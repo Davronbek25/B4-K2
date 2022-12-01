@@ -3,12 +3,17 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom'
 
 function NavBar({ changeCategory }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to ="/" className='text-decoration-none text-dark'>
+            Book Store
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -16,8 +21,16 @@ function NavBar({ changeCategory }) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
+            <Nav.Link>
+              <Link to='/' className='text-decoration-none text-secondary'>
+                Home
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to='/latestRelease' className='text-decoration-none text-secondary'>
+                Latest
+              </Link>
+            </Nav.Link>
             <Form.Select aria-label="Default select example" onChange={(event) => changeCategory(event)}>
               <option value="0">Fantasy</option>
               <option value="1">History</option>
@@ -25,9 +38,6 @@ function NavBar({ changeCategory }) {
               <option value="3">Romance</option>
               <option value="4">Scifi</option>
             </Form.Select>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

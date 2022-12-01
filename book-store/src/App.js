@@ -2,7 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from "react"
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
-
+import Footer from './components/Footer';
+import LatestRelease from './components/LatestRelease';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 function App() {
 
   const [books, setBooks] = useState([])
@@ -33,10 +35,16 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <NavBar changeCategory={changeCategory} />
-      <Home books={selectValue} selectValue={selectValue} />
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar changeCategory={changeCategory} />
+        <Routes>
+          <Route exact path='/' element={<Home books={selectValue} selectValue={selectValue} />} />
+          <Route path='/latestRelease' element={<LatestRelease book={selectValue} />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
